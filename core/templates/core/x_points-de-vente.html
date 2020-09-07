@@ -1,0 +1,344 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<title>Sofadig - Accueil</title>
+		<meta name="keywords" content="HTML5,CSS3,Template" />
+		<meta name="description" content="" />
+		<meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
+
+		<!-- mobile settings -->
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+		<!-- WEB FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet" type="text/css" />
+
+		<!-- CORE CSS -->
+		<link href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'plugins/owl-carousel/owl.carousel.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'plugins/owl-carousel/owl.theme.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'plugins/owl-carousel/owl.transitions.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'plugins/magnific-popup/magnific-popup.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/animate.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/superslides.css' %}" rel="stylesheet" type="text/css" />
+
+		<!-- REVOLUTION SLIDER -->
+		<link href="{% static 'plugins/slider.revolution.v4/css/settings.css' %}" rel="stylesheet" type="text/css" />
+
+		<!-- THEME CSS -->
+		<link href="{% static 'css/essentials.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/layout.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/layout-responsive.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'css/shop.css' %}" rel="stylesheet" type="text/css" /><!-- SHOP -->
+		<link href="{% static 'css/color_scheme/orange.css' %}" rel="stylesheet" type="text/css" /><!-- orange: default style -->
+		<!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
+
+		<!-- styleswitcher - demo only -->
+		<link href="{% static 'css/color_scheme/orange.css' %}" rel="alternate stylesheet" type="text/css" title="orange" />
+		<link href="{% static 'css/color_scheme/red.css' %}" rel="alternate stylesheet" type="text/css" title="red" />
+		<link href="{% static 'css/color_scheme/pink.css' %}" rel="alternate stylesheet" type="text/css" title="pink" />
+		<link href="{% static 'css/color_scheme/yellow.css' %}" rel="alternate stylesheet" type="text/css" title="yellow" />
+		<link href="{% static 'css/color_scheme/darkgreen.css' %}" rel="alternate stylesheet" type="text/css" title="darkgreen" />
+		<link href="{% static 'css/color_scheme/green.css' %}" rel="alternate stylesheet" type="text/css" title="green" />
+		<link href="{% static 'css/color_scheme/darkblue.css' %}" rel="alternate stylesheet" type="text/css" title="darkblue" />
+		<link href="{% static 'css/color_scheme/blue.css' %}" rel="alternate stylesheet" type="text/css" title="blue" />
+		<link href="{% static 'css/color_scheme/brown.css' %}" rel="alternate stylesheet" type="text/css" title="brown" />
+		<link href="{% static 'css/color_scheme/lightgrey.css' %}" rel="alternate stylesheet" type="text/css" title="lightgrey" />
+		<!-- /styleswitcher - demo only -->
+		
+		
+
+		<!-- STYLESWITCHER - REMOVE ON PRODUCTION/DEVELOPMENT -->
+		<link href="{% static 'plugins/styleswitcher/styleswitcher.css' %}" rel="stylesheet" type="text/css" />		
+
+		<!-- Morenizr -->
+		<script type="text/javascript" src="{% static 'plugins/modernizr.min.js' %}"></script>
+	</head>
+	<body><!-- Available classes for body: boxed , pattern1...pattern10 . Background Image - example add: data-background="assets/images/boxed_background/1.jpg"  -->
+
+		<!-- Top Bar -->
+		<header id="topHead">
+			<div class="container">
+
+				<!-- PHONE/EMAIL -->
+				<span class="quick-contact pull-left">
+					<i class="fa fa-phone"></i> +590 (0) 590 26 73 20 &bull; 
+					<a class="hidden-xs" href="mailto:info@sofadig.net">info@sofadig.net</a>
+				</span>
+				<!-- /PHONE/EMAIL -->
+
+
+				<!-- SIGN IN -->
+				<div class="pull-right nav signin-dd">
+					<a href="/admin"><i class="fa fa-users"></i><span class="hidden-xs"> Connexion</span></a>
+				</div>
+				<!-- /SIGN IN -->
+
+			</div>
+		</header>
+		<!-- /Top Bar -->
+
+		<!-- TOP NAV -->
+		<header id="topNav" class="topHead"><!-- remove class="topHead" if no topHead used! -->
+			<div class="container">
+
+				<!-- Mobile Menu Button -->
+				<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+					<i class="fa fa-bars"></i>
+				</button>
+
+				<!-- Logo text or image -->
+				<a class="logo" href="{% url 'home' %}">
+					<img src="{% static 'images/logo.png' %}" alt="Atropos" />
+				</a>
+
+				<!-- Top Nav -->
+				<div class="navbar-collapse nav-main-collapse collapse pull-right">
+					<nav class="nav-main mega-menu">
+						<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
+							<li><a href="{% url 'home' %}">Accueil</a></li>
+                            <li><a href="{% url 'catalog' %}">Catalogue</a></li>
+                            <li>
+                            	<div class="dropdown">
+								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Points de vente</button>
+
+								  <div class="dropdown-menu">
+								    {% for r in regions %}
+								    <a class="dropdown-item" href="{% url 'pos' r.id %}">{{ r.title }}</a>
+								    <div class="dropdown-divider"></div>
+								    {% endfor %}
+								  </div>
+								</div>
+							</li>
+                            <li><a href="x_contact.html">Contact</a></li>
+							<!-- GLOBAL SEARCH -->
+							<li class="search">
+								<!-- search form -->
+								<form method="get" action="#" class="input-group pull-right">
+									<input type="text" class="form-control" name="k" id="k" value="" placeholder="Rechercher">
+									<span class="input-group-btn">
+										<button class="btn btn-primary notransition"><i class="fa fa-search"></i></button>
+									</span>
+								</form>
+								<!-- /search form -->
+							</li>
+							<!-- /GLOBAL SEARCH -->
+
+						</ul>
+					</nav>
+				</div>
+				<!-- /Top Nav -->
+
+			</div>
+
+		</header>
+
+		<span id="header_shadow"></span>
+		<!-- /TOP NAV -->
+
+		<!-- WRAPPER -->
+		<div id="wrapper">
+
+			<!-- PAGE TITLE -->
+			<header id="page-title"> <!-- style="background-image:url('assets/images/demo/parallax_bg.jpg')" -->
+				<!--
+					Enable only if bright background image used
+					<span class="overlay"></span>
+				-->
+
+				<div class="container">
+					<h1>Points de Vente - {{ region.title }}</h1>
+
+					<ul class="breadcrumb">
+						<li><a href="{% url 'home' %}">Accueil</a></li>
+						<li><a href="#">Points de Vente</a></li>
+						<li class="active">{{ region.title }}</li>
+					</ul>
+				</div>
+			</header>
+
+			<section class="container printable"><!-- note class 'printable' - this area is printable only! -->
+
+				<div class="white-row">
+
+				<!-- INVOICE BODY -->
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Liste des Points de Vente en {{ region.title }}</h3>
+					</div>
+
+					<div class="panel-body">
+					
+						<table class="table table-striped">
+							<!-- table head -->
+							<thead>
+								<tr>
+									<th>Commune</th>
+									<th>Nom</th>
+									<th  style="width:20%">Site Internet</th>
+								</tr>
+							</thead>
+							
+							<!-- table items -->
+							<tbody>
+								{% for s in shops %}
+								<tr><!-- item -->
+                                    <td>{{ s.name }}</td>
+                                    <td>{{ s.city }}</td>
+									<td><a href="{{ s.url }}" target="_blank">Consulter</a></td>
+								</tr>
+								{% endfor %}
+								
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+				<!-- INVOICE BODY -->
+
+				<!-- INVOICE FOOTER -->
+
+				</div>
+
+				</div>
+				<!-- /INVOICE FOOTER -->
+
+			</section>
+
+		<!-- /WRAPPER -->
+
+		
+<!-- FOOTER -->
+		<footer>
+
+			<!-- copyright , scrollTo Top -->
+			<div class="footer-bar">
+				<div class="container">
+					<span class="copyright">&copy; Tous droits réservés. 2020 Sofadig.net.</span>
+					<a class="toTop" href="#topNav">RETOUR EN HAUT <i class="fa fa-arrow-circle-up"></i></a>
+				</div>
+			</div>
+			<!-- copyright , scrollTo Top -->
+
+
+			<!-- footer content -->
+			<div class="footer-content">
+				<div class="container">
+
+					<div class="row">
+
+
+						<!-- FOOTER CONTACT INFO -->
+						<div class="column col-md-4">
+							<h3>CONTACT</h3>
+
+							<address class="font-opensans">
+								<ul>
+									<li class="footer-sprite address">
+										Impasse Georges Claude<br />
+										Z.I. Jarry<br />
+										97122 Baie-Mahault<br />
+                                        GUADELOUPE<br />
+									</li>
+									<li class="footer-sprite phone">
+										Tél : +590 (0) 590 26 73 20<br />
+                                        Fax : +590 (0) 590 26 73 21
+									</li>
+									<li class="footer-sprite email">
+										<a href="mailto:info@sofadig.net">info@sofadig.net</a>
+									</li>
+								</ul>
+							</address>
+
+						</div>
+						<!-- /FOOTER CONTACT INFO -->
+
+
+						<!-- FOOTER LOGO -->
+						<div class="column logo col-md-4 text-center">
+							<div class="logo-content">
+								<img class="animate_fade_in" src="{% static 'images/logo_footer.png' %}" width="200" alt="" />
+							</div>											
+						</div>
+						<!-- /FOOTER LOGO -->
+
+
+						<!-- FOOTER LATEST POSTS -->
+						<div class="column col-md-4 text-right">
+							<h3>PRODUITS LES PLUS CONSULTÉS</h3>
+
+							<div class="post-item">
+								<small>Kaznet</small>
+								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+							</div>
+							<div class="post-item">
+								<small>Kaznet</small>
+								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+							</div>
+							<div class="post-item">
+								<small>Kaznet</small>
+								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+							</div>
+
+							<a href="x_catalogue.html" class="view-more pull-right">Catalogue <i class="fa fa-arrow-right"></i></a>
+
+						</div>
+						<!-- /FOOTER LATEST POSTS -->
+
+					</div>
+
+				</div>
+			</div>
+			<!-- footer content -->
+
+		</footer>
+		<!-- /FOOTER -->
+
+
+
+		<!-- JAVASCRIPT FILES -->
+		<script type="text/javascript" src="{% static 'plugins/jquery-2.2.3.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.easing.1.3.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.cookie.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.appear.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.isotope.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/masonry.js' %}"></script>
+
+		<script type="text/javascript" src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/stellar/jquery.stellar.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/knob/js/jquery.knob.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/jquery.backstretch.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/superslides/dist/jquery.superslides.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/styleswitcher/styleswitcher.js' %}"></script><!-- STYLESWITCHER - REMOVE ON PRODUCTION/DEVELOPMENT -->
+		<script type="text/javascript" src="{% static 'plugins/mediaelement/build/mediaelement-and-player.min.js' %}"></script>
+
+		<!-- REVOLUTION SLIDER -->
+		<script type="text/javascript" src="{% static 'plugins/slider.revolution.v4/js/jquery.themepunch.tools.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'plugins/slider.revolution.v4/js/jquery.themepunch.revolution.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/slider_revolution.js' %}"></script>
+
+
+		<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
+		<!--<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-XXXXX-X', 'domainname.com');
+			ga('send', 'pageview');
+		</script>
+		-->
+
+	</body>
+</html>
