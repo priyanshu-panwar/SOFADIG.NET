@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-admin.site.site_header = 'SOFADIG Admin Portal'
+admin.site.site_header = 'SOFADIG Admin Panneau'
 admin.site.site_title = 'SOFADIG'
 
 urlpatterns = [

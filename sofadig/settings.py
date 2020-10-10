@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-gdns(=sqm0n*d__apgptrx7s%#lgcv24g^3&5bljq3)@58kq0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '208.167.233.90', 'sofadig.net']
+ALLOWED_HOSTS = ['localhost', '208.167.233.90', 'sofadig.net', 'www.sofadig.net']
 
 
 # Application definition
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'UTC'
 

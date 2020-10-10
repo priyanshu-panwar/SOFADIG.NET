@@ -36,7 +36,8 @@
 		<link href="{% static 'css/layout-responsive.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'css/shop.css' %}" rel="stylesheet" type="text/css" /><!-- SHOP -->
 		<link href="{% static 'css/color_scheme/orange.css' %}" rel="stylesheet" type="text/css" /><!-- orange: default style -->
-		<!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
+		<link href="{% static 'css/color_scheme/darkblue.css' %}" rel="alternate stylesheet" type="text/css" title="darkblue" />
+    <!--<link id="css_dark_skin" href="{% static 'css/layout-dark.css' %}" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
 
 		<!-- styleswitcher - demo only -->
 		<link href="{% static 'css/color_scheme/orange.css' %}" rel="alternate stylesheet" type="text/css" title="orange" />
@@ -45,7 +46,6 @@
 		<link href="{% static 'css/color_scheme/yellow.css' %}" rel="alternate stylesheet" type="text/css" title="yellow" />
 		<link href="{% static 'css/color_scheme/darkgreen.css' %}" rel="alternate stylesheet" type="text/css" title="darkgreen" />
 		<link href="{% static 'css/color_scheme/green.css' %}" rel="alternate stylesheet" type="text/css" title="green" />
-		<link href="{% static 'css/color_scheme/darkblue.css' %}" rel="alternate stylesheet" type="text/css" title="darkblue" />
 		<link href="{% static 'css/color_scheme/blue.css' %}" rel="alternate stylesheet" type="text/css" title="blue" />
 		<link href="{% static 'css/color_scheme/brown.css' %}" rel="alternate stylesheet" type="text/css" title="brown" />
 		<link href="{% static 'css/color_scheme/lightgrey.css' %}" rel="alternate stylesheet" type="text/css" title="lightgrey" />
@@ -101,19 +101,17 @@
 				<div class="navbar-collapse nav-main-collapse collapse pull-right">
 					<nav class="nav-main mega-menu">
 						<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
-							<li><a href="{% url 'home' %}">Accueil</a></li>
+							<li class="active"><a href="{% url 'home' %}">Accueil</a></li>
                             <li><a href="{% url 'catalog' %}">Catalogue</a></li>
-                            <li>
-                            	<div class="dropdown">
-								  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Points de vente</button>
-
-								  <div class="dropdown-menu">
-								    {% for r in regions %}
-								    <a class="dropdown-item" href="{% url 'pos' r.id %}">{{ r.title }}</a>
-								    <div class="dropdown-divider"></div>
-								    {% endfor %}
-								  </div>
-								</div>
+                            <li class="dropdown">
+								<a class="dropdown-toggle" href="">
+									Points de Vente <i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									{% for r in regions %}
+									<li><a href="{% url 'pos' r.id %}">{{ r.title }}</a></li>
+									{% endfor %}
+								</ul>
 							</li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
 							<!-- GLOBAL SEARCH -->
@@ -243,11 +241,12 @@
                 <h2>Nos marques</h2>
                 <div class="owl-carousel" data-plugin-options='{"items": 6, "singleItem": false, "autoPlay": true}'><!-- transitionStyle: fade, backSlide, goDown, fadeUp,  -->
                     {% for brand in brands %}
-
-                    <div>
+                    {% if brand.image %}
+                    <div> 
                         <img class="img-responsive" src="{{ brand.image.url }}" alt="">
+                    
                     </div>
-
+                    {% endif %}
                     {% endfor %}
 
                 </div>
@@ -308,6 +307,7 @@
 						<div class="column logo col-md-4 text-center">
 							<div class="logo-content">
 								<img class="animate_fade_in" src="{% static 'images/logo_footer.png' %}" width="200" alt="" />
+                                <p>Site réalisé par <a href="https://vancleem.com" target="_blank"> vanCleem.com</a></p>
 							</div>											
 						</div>
 						<!-- /FOOTER LOGO -->
@@ -315,23 +315,18 @@
 
 						<!-- FOOTER LATEST POSTS -->
 						<div class="column col-md-4 text-right">
-							<h3>PRODUITS LES PLUS CONSULTÉS</h3>
+							<h3>AUTRES INFORMATIONS</h3>
 
 							<div class="post-item">
-								<small>Kaznet</small>
-								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+								<h3><a href="blog-single-sidebar-left.html">FAQ - Foire aux Questions</a></h3>
 							</div>
 							<div class="post-item">
-								<small>Kaznet</small>
-								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+								<h3><a href="blog-single-sidebar-left.html">Conditions Générales</a></h3>
 							</div>
-							<div class="post-item">
-								<small>Kaznet</small>
-								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+                            <div class="post-item">
+								<h3><a href="blog-single-sidebar-left.html">Politique de Confidentialité</a></h3>
 							</div>
-
-							<a href="x_catalogue.html" class="view-more pull-right">Catalogue <i class="fa fa-arrow-right"></i></a>
-
+                            
 						</div>
 						<!-- /FOOTER LATEST POSTS -->
 

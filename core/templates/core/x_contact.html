@@ -37,6 +37,7 @@
 		<link href="{% static 'css/shop.css' %}" rel="stylesheet" type="text/css" /><!-- SHOP -->
 		<link href="{% static 'css/color_scheme/orange.css' %}" rel="stylesheet" type="text/css" /><!-- orange: default style -->
 		<!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
+   
 
 		<!-- styleswitcher - demo only -->
 		<link href="{% static 'css/color_scheme/orange.css' %}" rel="alternate stylesheet" type="text/css" title="orange" />
@@ -93,17 +94,26 @@
 
 				<!-- Logo text or image -->
 				<a class="logo" href="{% url 'home' %}">
-					<img src="assets/images/logo.png" alt="Atropos" />
+					<img src="{% static 'images/logo.png' %}" alt="Atropos" />
 				</a>
 
 				<!-- Top Nav -->
 				<div class="navbar-collapse nav-main-collapse collapse pull-right">
 					<nav class="nav-main mega-menu">
 						<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
-							<li><a href="x_home.html">Accueil</a></li>
-                            <li><a href="x_catalogue.html">Catalogue</a></li>
-                            <li><a href="#">Points de vente</a></li>
-                            <li><a href="x_contact.html">Contact</a></li>
+							<li><a href="{% url 'home' %}">Accueil</a></li>
+                            <li><a href="{% url 'catalog' %}">Catalogue</a></li>
+                            <li class="dropdown">
+								<a class="dropdown-toggle" href="">
+									Points de Vente <i class="fa fa-angle-down"></i>
+								</a>
+								<ul class="dropdown-menu">
+									{% for r in regions %}
+									<li><a href="{% url 'pos' r.id %}">{{ r.title }}</a></li>
+									{% endfor %}
+								</ul>
+							</li>
+                            <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
 							<!-- GLOBAL SEARCH -->
 							<li class="search">
 								<!-- search form -->
@@ -309,6 +319,7 @@
 						<div class="column logo col-md-4 text-center">
 							<div class="logo-content">
 								<img class="animate_fade_in" src="{% static 'images/logo_footer.png' %}" width="200" alt="" />
+                                <p>Site réalisé par <a href="https://vancleem.com" target="_blank"> vanCleem.com</a></p>
 							</div>											
 						</div>
 						<!-- /FOOTER LOGO -->
@@ -316,23 +327,18 @@
 
 						<!-- FOOTER LATEST POSTS -->
 						<div class="column col-md-4 text-right">
-							<h3>PRODUITS LES PLUS CONSULTÉS</h3>
+							<h3>AUTRES INFORMATIONS</h3>
 
 							<div class="post-item">
-								<small>Kaznet</small>
-								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+								<h3><a href="blog-single-sidebar-left.html">FAQ - Foire aux Questions</a></h3>
 							</div>
 							<div class="post-item">
-								<small>Kaznet</small>
-								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+								<h3><a href="blog-single-sidebar-left.html">Conditions Générales</a></h3>
 							</div>
-							<div class="post-item">
-								<small>Kaznet</small>
-								<h3><a href="blog-single-sidebar-left.html">Liquide vaisselle citron</a></h3>
+                            <div class="post-item">
+								<h3><a href="blog-single-sidebar-left.html">Politique de Confidentialité</a></h3>
 							</div>
-
-							<a href="x_catalogue.html" class="view-more pull-right">Catalogue <i class="fa fa-arrow-right"></i></a>
-
+                            
 						</div>
 						<!-- /FOOTER LATEST POSTS -->
 

@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Brand, Category, Product, Region, Shop, Contact
+from .models import ProductBrand, Category, Product, Region, Shop, Contact
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
-	brands = Brand.objects.all()
+	brands = ProductBrand.objects.all()
 	regions = Region.objects.all()
 	context = {
 		'brands' : brands,
@@ -16,6 +16,7 @@ def home(request):
 def catalog(request):
 	products = Product.objects.all()
 	products = products[::-1]
+	count = len(products)
 
 	categories = Category.objects.all()
 	categories = categories[::-1]
@@ -36,6 +37,7 @@ def catalog(request):
 		'products' : products,
 		'categories' : categories,
 		'regions' : regions,
+		'count' : count,
 	}
 	return render(request, 'core/x_catalogue.html', context)
 
@@ -63,6 +65,10 @@ def ingredients(request, pk):
 def category_details(request, pk):
 	products = Product.objects.filter(category__id=pk)
 	products = products[::-1]
+	count = len(products)
+
+	categories = Category.objects.all()
+	categories = categories[::-1]
 
 	regions = Region.objects.all()
 
@@ -79,6 +85,8 @@ def category_details(request, pk):
 	context = {
 		'products' : products,
 		'regions' : regions,
+		'categories' : categories,
+		'count' : count,
 	}
 	return render(request, 'core/x_catalogue.html', context)
 
@@ -86,7 +94,7 @@ def category_details(request, pk):
 def pos(request, pk):
 	regions = Region.objects.all()
 	object = get_object_or_404(Region, pk=pk)
-	shops = Shop.objects.filter(region__id=pk)
+	shops = Shop.objects.filter(region__id=pk).order_by('name')
 	shops = shops[::-1]
 
 	context = {

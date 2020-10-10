@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Brand, Ingredient, Category, Product, ProductBrand, Region, Shop, Contact
 
-admin.site.register(Brand)
+#admin.site.register(Brand)
 admin.site.register(Category)
 admin.site.register(ProductBrand)
 admin.site.register(Region)

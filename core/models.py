@@ -1,5 +1,6 @@
 from django.db import models
 from PIL import Image
+from django.utils.translation import gettext as _
 
 
 class Brand(models.Model):
@@ -8,7 +9,7 @@ class Brand(models.Model):
 	date = models.DateField(auto_now_add=True)
 
 	class Meta:
-		verbose_name_plural = "Brands"
+		verbose_name_plural = _("Brands")
 		ordering = ['-date',]
 
 	def __str__(self):
@@ -33,7 +34,7 @@ class ProductBrand(models.Model):
 	date = models.DateField(auto_now_add=True)
 
 	class Meta:
-		verbose_name_plural = "Product Brands"
+		verbose_name_plural = "Produit Marques"
 		ordering = ['-date',]
 
 	def __str__(self):
@@ -51,7 +52,7 @@ class Product(models.Model):
 	date = models.DateField(auto_now_add=True)
 
 	class Meta:
-		verbose_name_plural = "Products"
+		verbose_name_plural = "Produit"
 		ordering = ['-date',]
 
 	def __str__(self):
@@ -72,7 +73,7 @@ class Region(models.Model):
 	date = models.DateField(auto_now_add=True)
 
 	class Meta:
-		verbose_name_plural = "Regions"
+		verbose_name_plural = "Régions"
 		ordering = ['-date',]
 
 	def __str__(self):
@@ -87,7 +88,7 @@ class Shop(models.Model):
 	date = models.DateField(auto_now_add=True)
 
 	class Meta:
-		verbose_name_plural = "Shops"
+		verbose_name_plural = "Magasins"
 		ordering = ['-date',]
 
 	def __str__(self):
