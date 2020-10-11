@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from .models import ProductBrand, Category, Product, Region, Shop, Contact
+from .models import Category, Product, Region, Shop, Contact, Brand, HomePage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
-	brands = ProductBrand.objects.all()
+	slides = HomePage.objects.all()
+	brands = Brand.objects.all()
 	regions = Region.objects.all()
 	context = {
 		'brands' : brands,
 		'regions' : regions,
+		'slides' : slides,
 	}
 	return render(request, 'core/x_home.html', context)
 
@@ -63,7 +65,7 @@ def ingredients(request, pk):
 
 
 def category_details(request, pk):
-	products = Product.objects.filter(category__id=pk)
+	products = Product.objects.filter(CATEGORIE__id=pk)
 	products = products[::-1]
 	count = len(products)
 

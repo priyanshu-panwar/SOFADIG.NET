@@ -145,90 +145,56 @@
 			<div class="fullwidthbanner-container roundedcorners">
 				<div class="fullwidthbanner">
 					<ul>	
-
-						<!-- SLIDE  -->
-						<li data-transition="3dcurtain-vertical" ddata-slotamount="15" data-masterspeed="300" data-delay="9400">
+						{% for slide in slides %}
+							<li data-transition="3dcurtain-vertical" ddata-slotamount="15" data-masterspeed="300" data-delay="4000">
 
 							<!-- COVER IMAGE -->
 							<img src="{% static 'images/demo/revolution_slider/sliderbg.jpg' %}" alt="" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="yes-repeat">
 
 							<div class="tp-caption large_bold_grey lfl stl"
 								data-x="18"
-								data-y="233"
-								data-speed="300"
-								data-start="500"
-								data-easing="easeOutExpo" data-end="8800" data-endspeed="300" data-endeasing="easeInSine">SOFADIG
+								data-y="210"
+								data-speed="1000"
+								data-start="200"
+								data-easing="easeOutExpo" data-end="3900" data-endspeed="300" data-endeasing="easeInSine">{{ slide.PRODUIT }}
 							</div>
 
 							<div class="tp-caption large_bold_grey medium_thin_grey lfl"
 								data-x="18"
-								data-y="200"
-								data-speed="300"
-								data-start="800"
-								data-easing="easeOutExpo" data-end="9100" data-endspeed="300" data-endeasing="easeInSine">
-								<a target="_blank" href="https://wrapbootstrap.com/theme/atropos-responsive-website-template-WB05SR527">PRODUITS</a>
+								data-y="169"
+								data-speed="1000"
+								data-start="300"
+								data-easing="easeOutExpo" data-end="3900" data-endspeed="1000" data-endeasing="easeInSine">
+								{{ slide.TYPE }}
 							</div>
 
 							<div class="tp-caption lft"
 								data-x="right" data-hoffset="-20"
-								data-y="50"
-								data-speed="600"
-								data-start="1100"
-								data-easing="easeOutExpo" data-end="3100" data-endspeed="600" data-endeasing="easeInSine">
-								<a href="shop-product-full-width.html"><img src="{% static 'images/demo/shop/slider/illustration1.png' %}" alt="Image 1"></a>
+								data-y="75"
+								data-speed="1000"
+								data-start="500"
+								data-easing="easeOutExpo" data-end="3900" data-endspeed="1000" data-endeasing="easeInSine">
+								<img src="{{ slide.IMAGE.url }}" alt="Image 1" style="height:350px; width: 500px;">
 							</div>
 
 							<div class="tp-caption medium_bg_darkblue sft stb"
-								data-x="720"
-								data-y="200"
-								data-speed="300"
-								data-start="1400"
-								data-easing="easeOutExpo" data-end="3300" data-endspeed="300" data-endeasing="easeInSine">ENTRETIEN DE LA MAISON
-							</div>
-
-							<div class="tp-caption lft ltb"
-								data-x="right" data-hoffset="-20"
-								data-y="50"
-								data-speed="600"
-								data-start="3600"
-								data-easing="easeOutExpo" data-end="5600" data-endspeed="600" data-endeasing="easeInSine">
-								<a href="shop-product-full-width.html"><img src="{% static 'images/demo/shop/slider/illustration1.png' %}" alt="Image 2"></a>
-							</div>
-
-							<div class="tp-caption medium_bg_darkblue sft stb"
-								data-x="720"
-								data-y="200"
-								data-speed="300"
-								data-start="3900"
-								data-easing="easeOutExpo" data-end="5800" data-endspeed="300" data-endeasing="easeInSine">HYGIÈNE ET BEAUTÉ
-							</div>
-
-
-							<div class="tp-caption lft ltb"
-								data-x="right" data-hoffset="-20"
-								data-y="0"
-								data-speed="600"
-								data-start="6100"
-								data-easing="easeOutExpo" data-end="8100" data-endspeed="300" data-endeasing="easeInSine">
-								<a href="shop-product-full-width.html"><img src="{% static 'images/demo/shop/slider/illustration1.png' %}" alt="Image 3"></a>
-							</div>
-
-							<div class="tp-caption medium_bg_darkblue sft stb"
-								data-x="720"
-								data-y="200"
-								data-speed="300"
-								data-start="6400"
-								data-easing="easeOutExpo" data-end="8300" data-endspeed="300" data-endeasing="easeInSine">ENTRETIEN AUTOMOBILE
+								data-x="26"
+								data-y="283"
+								data-speed="1000"
+								data-start="400"
+								data-easing="easeOutExpo" data-end="3900" data-endspeed="1000" data-endeasing="easeInSine">{{ slide.PARTICULARITE }}
 							</div>
 
 						</li>
+						{% endfor %}
 
+						
 					</ul>
-
 					<div class="tp-bannertimer"></div>
 				</div>
 			</div>
 			<!-- /REVOLUTION SLIDER -->
+
 
 
 			<section class="container text-center">

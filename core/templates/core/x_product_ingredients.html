@@ -168,7 +168,7 @@
 				<!-- INVOICE BODY -->
 				<div class="panel panel-primary">
 					<div class="panel-heading">
-						<h3 class="panel-title text-center">{{ product.pbrand.title }}&nbsp;&nbsp; <strong>{{ product.name }}</strong></h3>
+						<h3 class="panel-title text-center">{{ product.BRAND.title }}&nbsp;&nbsp; <strong>{{ product.DESIGNATION }}</strong></h3>
 					</div>
 
 					<div class="panel-body">
@@ -186,11 +186,11 @@
 							<!-- table items -->
 							<tbody>
 
-								{% for i in product.ingredient_set.all %}
+								{% for i in product.INGREDIENTS.ingredient_set.all %}
 								<tr><!-- item -->
 									<td>{{ forloop.counter }}</td>
-									<td>{{ i.name }}</td>
-									<td>{{ i.amt }}</td>
+									<td>{{ i.NAME }}</td>
+									<td>{{ i.AMT }}</td>
 								</tr>
 								{% endfor %}
 								
