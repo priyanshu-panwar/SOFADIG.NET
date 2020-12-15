@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'FR'
 
 TIME_ZONE = 'UTC'
 
@@ -134,3 +135,16 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/') 
 MEDIA_URL = '/media/'
+
+from . import keys
+
+ANYMAIL = {
+    "SENDINBLUE_API_KEY": keys.api_key,
+}
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+DEFAULT_FROM_EMAIL = "site@sofadig.net"
+SERVER_EMAIL = "priyanshu009ch@hotmail.com"
+
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL
+
+AUTH_USER_MODEL = "core.User"

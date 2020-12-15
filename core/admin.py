@@ -1,12 +1,31 @@
 from django.contrib import admin
-from .models import Brand, Ingredient, HomePage, IngredientList, Category, Product, Region, Shop, Contact, GROUPES
+from .models import Brand, Utility, Ingredient, SubCategory, HomePage, IngredientList, Category, Product, Region, Shop, Contact, GROUPES
 from django.contrib import admin
-from django.contrib.auth.models import Group, User
+from .models import User, PDFRequest
+from django.contrib.auth.models import Group
 from django.contrib import messages
 
+admin.site.register(PDFRequest)
+
+admin.site.register(User)
+admin.site.register(Utility)
+
 admin.site.unregister(Group)
-admin.site.unregister(User)
-admin.site.register(Category)
+# admin.site.unregister(User)
+
+# admin.site.register(SubCategory)
+# admin.site.register(Category)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+	list_display = ('cat_id', 'cat_name', 'cat_short_name', 'level')
+
+	def get_form(self, request, obj=None, **kwargs):
+		self.exclude = ("level",)
+		form = super(CategoryAdmin, self).get_form(request, obj, **kwargs)
+		return form
+
+
+
 admin.site.register(GROUPES)
 admin.site.register(Shop)
 admin.site.register(Region)
@@ -28,10 +47,14 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-	prepopulated_fields = {"slug": ("DESIGNATION",)}
+	# prepopulated_fields = {"slug": ("DESIGNATION",)}
 	search_fields = ('DESIGNATION', 'GENCODE', 'CODE')
 	list_filter = ('date',)
 	list_display = ('DESIGNATION', 'CODE', 'GENCODE', 'HYP', 'SUP', 'MINI')
+	def get_form(self, request, obj=None, **kwargs):
+		self.exclude = ("slug", "count")
+		form = super(ProductAdmin, self).get_form(request, obj, **kwargs)
+		return form
 
 admin.site.register(Product, ProductAdmin)
 

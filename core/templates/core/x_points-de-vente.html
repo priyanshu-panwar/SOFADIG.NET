@@ -36,20 +36,20 @@
 		<link href="{% static 'css/layout.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'css/layout-responsive.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'css/shop.css' %}" rel="stylesheet" type="text/css" /><!-- SHOP -->
-		<link href="{% static 'css/color_scheme/orange.css' %}" rel="stylesheet" type="text/css" /><!-- orange: default style -->
-		<!--<link id="css_dark_skin" href="assets/css/layout-dark.css" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
+		<!--<link href="{% static 'css/color_scheme/orange.css' %}" rel="stylesheet" type="text/css" />--><!-- orange: default style -->
+		<link href="{% static 'css/color_scheme/darkblue.css' %}" rel="stylesheet" type="text/css" />
+    	<!--<link id="css_dark_skin" href="{% static 'css/layout-dark.css' %}" rel="stylesheet" type="text/css" />--><!-- DARK SKIN -->
 
 		<!-- styleswitcher - demo only -->
-		<link href="{% static 'css/color_scheme/orange.css' %}" rel="alternate stylesheet" type="text/css" title="orange" />
+		<!--<link href="{% static 'css/color_scheme/orange.css' %}" rel="alternate stylesheet" type="text/css" title="orange" />
 		<link href="{% static 'css/color_scheme/red.css' %}" rel="alternate stylesheet" type="text/css" title="red" />
 		<link href="{% static 'css/color_scheme/pink.css' %}" rel="alternate stylesheet" type="text/css" title="pink" />
 		<link href="{% static 'css/color_scheme/yellow.css' %}" rel="alternate stylesheet" type="text/css" title="yellow" />
 		<link href="{% static 'css/color_scheme/darkgreen.css' %}" rel="alternate stylesheet" type="text/css" title="darkgreen" />
 		<link href="{% static 'css/color_scheme/green.css' %}" rel="alternate stylesheet" type="text/css" title="green" />
-		<link href="{% static 'css/color_scheme/darkblue.css' %}" rel="alternate stylesheet" type="text/css" title="darkblue" />
 		<link href="{% static 'css/color_scheme/blue.css' %}" rel="alternate stylesheet" type="text/css" title="blue" />
 		<link href="{% static 'css/color_scheme/brown.css' %}" rel="alternate stylesheet" type="text/css" title="brown" />
-		<link href="{% static 'css/color_scheme/lightgrey.css' %}" rel="alternate stylesheet" type="text/css" title="lightgrey" />
+		<link href="{% static 'css/color_scheme/lightgrey.css' %}" rel="alternate stylesheet" type="text/css" title="lightgrey" />-->
 		<!-- /styleswitcher - demo only -->
 		
 		
@@ -68,17 +68,116 @@
 
 				<!-- PHONE/EMAIL -->
 				<span class="quick-contact pull-left">
-					<i class="fa fa-phone"></i> +590 (0) 590 26 73 20 &bull; 
-					<a class="hidden-xs" href="mailto:info@sofadig.net">info@sofadig.net</a>
+					<i class="fa fa-phone"></i> {{ util.Telephone }} &bull;
+					<a class="hidden-xs" href="mailto:{{ util.Email }}">{{ util.Email }}</a>
 				</span>
 				<!-- /PHONE/EMAIL -->
 
-
 				<!-- SIGN IN -->
+				{% if not user.is_authenticated %}
 				<div class="pull-right nav signin-dd">
-					<a href="/admin"><i class="fa fa-users"></i><span class="hidden-xs"> Connexion</span></a>
+					<a id="quick_sign_in" href="page-signin.html" data-toggle="dropdown"><i class="fa fa-users"></i><span class="hidden-xs"> Connexion</span></a>
+					<div class="dropdown-menu" role="menu" aria-labelledby="quick_sign_in">
+
+						<h4>Accès pro</h4>
+						<form method="POST" role="form" action="{% url 'login' %}">
+							{% csrf_token %}
+
+							<div class="form-group"><!-- email -->
+								<input required type="text" class="form-control" placeholder="Adresse mail" name="username">
+							</div>
+
+							<div class="input-group">
+
+								<!-- password -->
+								<input required type="password" class="form-control" placeholder="Mot de passe" name="password">
+
+								<!-- submit button -->
+								<span class="input-group-btn">
+									<input type="submit" name="submit" class="btn btn-primary">Connexion</button>
+								</span>
+
+							</div>
+<!--
+							<div class="checkbox">
+								<label>
+									<input type="checkbox"> Mémoriser &bull; <a href="page-signin.html">Mot de passe oublié?</a>
+								</label>
+							</div>
+-->
+						</form>
+
+						<hr />
+
+						<p class="bottom-create-account">
+							<a href="page-signup.html">Demande d'accès</a>
+						</p>
+					</div>
 				</div>
+				{% else %}
+				<div class="pull-right nav signin-dd">
+					<a id="quick_sign_in" href="{% url 'logout' %}" data-toggle=""><i class="fa fa-users"></i> Déconnexion</a>
+				</div>
+				{% endif %}
 				<!-- /SIGN IN -->
+				{% if user.is_authenticated %}
+				<div class="pull-right nav hidden-xs">
+					<a href="page-about-us.html"><i class="fa fa-user"></i> Admin</a>
+					<!-- modal trigger -->
+					<a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-building"></i> Carrefour Milenis</a>
+				</div>
+				<!-- /LINKS -->
+
+				<!-- modal dialog -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<div class="modal-header"><!-- modal header -->
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">Sélection client</h4>
+							</div><!-- /modal header -->
+
+							<!-- modal body -->
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+								    <label for="exampleFormControlSelect1">Sélectionnez un territoire :</label>
+								    <select class="form-control" id="exampleFormControlSelect1">
+								      <option>Guadeloupe</option>
+								      <option>Martinique</option>
+								      <option>Guyane</option>
+								    </select>
+								  </div>
+								  <div class="form-group">
+								    <label for="exampleFormControlSelect1">Sélectionnez un client :</label>
+								    <select class="form-control" id="exampleFormControlSelect1">
+								      <option>Carrefour Milénis</option>
+								      <option>Carrefour Destrelland</option>
+								      <option>Super U Grand Camp</option>
+								      <option>Super U Petit-Bourg</option>
+								      <option>Géant Casino Bas-du-Fort</option>
+								    </select>
+								  </div>
+								  <!-- <button type="submit" class="btn btn-primary">Valider</button> -->
+
+									</div>
+									<!-- /modal body -->
+
+								<div class="modal-footer"><!-- modal footer -->
+									<button class="btn btn-default" data-dismiss="modal">Fermer</button> <button class="btn btn-primary">Valider</button>
+								</div><!-- /modal footer -->
+							</form>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- CART MOBILE BUTTON -->
+				<a class="pull-right" id="btn-mobile-quick-cart" href="shop-cart.html"><i class="fa fa-shopping-cart"></i></a>
+
+				{% endif %}
+				<!-- CART MOBILE BUTTON -->
 
 			</div>
 		</header>
@@ -104,7 +203,7 @@
 						<ul class="nav nav-pills nav-main scroll-menu" id="topMain">
 							<li><a href="{% url 'home' %}">Accueil</a></li>
                             <li><a href="{% url 'catalog' %}">Catalogue</a></li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
 								<a class="dropdown-toggle" href="">
 									Points de Vente <i class="fa fa-angle-down"></i>
 								</a>
@@ -116,6 +215,8 @@
 							</li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
 							<!-- GLOBAL SEARCH -->
+							
+							{% if user.is_authenticated %}
 							<li class="search">
 								<!-- search form -->
 								<form method="get" action="#" class="input-group pull-right">
@@ -127,6 +228,53 @@
 								<!-- /search form -->
 							</li>
 							<!-- /GLOBAL SEARCH -->
+							<!-- QUICK SHOP CART -->
+							<li class="quick-cart">
+								<span class="badge pull-right">3</span>
+
+								<div class="quick-cart-content">
+
+									<p><i class="fa fa-warning"></i> 3 articles dans la commande</p>
+
+									<a class="item" href="shop-product-full-width.html"><!-- item 1 -->
+										<img class="pull-left" src="assets/images/demo/shop/50%20MENTHE.jpg" width="40" alt="quick cart" />
+										<div class="inline-block">
+											<span class="title">Kaznet - Javel Citron 1L</span>
+											<span class="price">2 &times; 12 PCB</span>
+										</div>
+									</a><!-- /item 1 -->
+
+									<a class="item" href="shop-product-full-width.html"><!-- item 2 -->
+										<img class="pull-left" src="assets/images/demo/shop/50%20MENTHE.jpg" width="40" alt="quick cart" />
+										<div class="inline-block">
+											<span class="title">Malaka - Javel Menthe 1L</span>
+											<span class="price">1 &times; PCB 12</span>
+										</div>
+									</a><!-- /item 2 -->
+
+									<a class="item" href="shop-product-full-width.html"><!-- item 3 -->
+										<img class="pull-left" src="assets/images/demo/shop/50%20MENTHE.jpg" width="40" alt="quick cart" />
+										<div class="inline-block">
+											<span class="title">Kaznet - Javel Tiaré 2L</span>
+											<span class="price">1 &times; PCB 8</span>
+										</div>
+									</a><!-- /item 3 -->
+
+									<!-- QUICK CART BUTTONS -->
+									<div class="row cart-footer">
+										<div class="col-md-12">
+											<a href="x_shop-cart.html" class="btn btn-primary btn-xs fullwidth">BON DE COMMANDE</a>
+										</div>
+
+									</div>
+									<!-- /QUICK CART BUTTONS -->
+
+								</div>
+
+							</li>
+							{% endif %}
+							<!-- /QUICK SHOP CART -->
+
 
 						</ul>
 					</nav>
@@ -136,6 +284,7 @@
 			</div>
 
 		</header>
+		
 
 		<span id="header_shadow"></span>
 		<!-- /TOP NAV -->
@@ -189,7 +338,11 @@
 								<tr><!-- item -->
                                     <td>{{ s.city }}</td>
                                     <td>{{ s.name }}</td>
+                                    {% if s.url %}
 									<td><a href="{{ s.url }}" target="_blank">Consulter</a></td>
+                                            {% else %}
+                                            <td></td>
+                                            {% endif %}
 								</tr>
 								{% endfor %}
 								
@@ -239,17 +392,14 @@
 							<address class="font-opensans">
 								<ul>
 									<li class="footer-sprite address">
-										Impasse Georges Claude<br />
-										Z.I. Jarry<br />
-										97122 Baie-Mahault<br />
-                                        GUADELOUPE<br />
+										{{ util.Adresse }}
 									</li>
 									<li class="footer-sprite phone">
-										Tél : +590 (0) 590 26 73 20<br />
-                                        Fax : +590 (0) 590 26 73 21
+										Tél : {{ util.Telephone }}<br />
+                                        Fax : {{ util.Fax }}
 									</li>
 									<li class="footer-sprite email">
-										<a href="mailto:info@sofadig.net">info@sofadig.net</a>
+										<a href="mailto:info@sofadig.net">{{ util.Email }}</a>
 									</li>
 								</ul>
 							</address>
