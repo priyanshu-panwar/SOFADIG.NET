@@ -16,4 +16,6 @@ urlpatterns = [
 	path('request_info/<int:pk>', views.request_info, name='request-info'),
 	path('loadxyz/', views.load_data_from_excel, name='load-data'),
 	path('loadxyzabc/', views.load_data_stores, name='load-data-stores'),
+	path('condition/', views.condition, name='condition'),
+	path('politiq/', views.politiq, name='politiq'),
 ]

@@ -417,3 +417,23 @@ def contact(request):
 
 	
 	return render(request, 'core/x_contact.html', context)
+
+
+def politiq(request):
+	util = Utility.objects.all()
+	util = util[::-1]
+	util = util[0]
+	context = {
+		'util' : util,
+	}
+	return render(request, 'core/condition.html', context)
+
+
+def condition(request):
+	util = Utility.objects.all()
+	util = util[::-1]
+	util = util[0]
+	context = {
+		'util' : util,
+	}
+	return render(request, 'core/politiq.html', context)
