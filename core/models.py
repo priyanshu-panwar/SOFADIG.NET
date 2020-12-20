@@ -35,6 +35,11 @@ class Utility(models.Model):
 	Telephone = models.CharField(max_length=100, default='+590 (0) 590 26 73 20')
 	Fax = models.CharField(max_length=100, default='+590 (0) 590 26 73 21')
 	Email = models.CharField(max_length=100, default='info@sofadig.net')
+	contact_subject = models.CharField(max_length=200, default='')
+	contact_mail = models.CharField(max_length=500, default='')
+	info_subject = models.CharField(max_length=200, default='')
+	info_mail = models.CharField(max_length=500, default='')
+	success_message = models.CharField(max_length=500, default='')
 
 	class Meta:
 		verbose_name_plural = "-----  RENSEIGNEMENTS ----"

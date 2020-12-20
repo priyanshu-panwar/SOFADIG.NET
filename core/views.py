@@ -60,8 +60,14 @@ def load_data_from_excel(request):
 	return HttpResponse("hell")
 
 from django.conf import settings
+from .models import Utility
+
 from django.contrib import messages
 def request_info(request, pk):
+	util = Utility.objects.all()
+	util = util[::-1]
+	util = util[0]
+	
 	p = get_object_or_404(Product, pk=pk)
 	if request.method == 'POST':
 		
@@ -72,8 +78,8 @@ def request_info(request, pk):
 			# fun = PDFRequest(name=name, email=email, phone=phone, product=p)
 			# fun.save()
 			recipient_list = ["sofadig@wanadoo.fr", ]
-			message = f'Hello, {name} ({email}) has asked for information request for product - {p.DESIGNATION}. \n PHone - {phone}.'
-			send_mail("Sofadig.net : Demande FDS", message, "site@sofadig.net", recipient_list);messages.success(request, 'Your request has been accepted');
+			message = f'{ util.info_mail }\n{ p.BRAND }\n{ p.DESIGNATION }\n{ p.GENCODE }    \n\n  { util.contact_mail }\n{name} ({email}) \n \n Phone - {phone}.'
+			send_mail(f"{ util.info_subject }", message, "site@sofadig.net", recipient_list);messages.success(request, f'{util.success_message}');
 			return redirect('detail', pk=p.slug)
 	else:
 		return redirect('detail', pk=p.slug)
@@ -367,7 +373,6 @@ def is_valid_queryparam(param):
 	return param != '' and param is not None
 
 
-from .models import Utility
 from django.core.mail import send_mail
 from sofadig.settings import EMAIL_HOST_USER
 
@@ -387,28 +392,28 @@ def contact(request):
 	print(phone)
 	print(subject)
 	print(message)
-	
-	if is_valid_queryparam(name) and is_valid_queryparam(email) and is_valid_queryparam(message):
-		c = Contact(name=name, email=email, telephone=phone, subject=subject, message=message)
-		c.save()
-		send_mail(
-			'Sofadig.net : formulaire contact',
-			"Thank you for Contacing.",
-			EMAIL_HOST_USER,
-			[email, ],
-			fail_silently=True,
-		)
-		send_mail(
-			'There is a contact request, Check your Django Admin.',
-			'Test Message',
-			EMAIL_HOST_USER,
-			['accueil.sofadig@orange.fr', ],
-			fail_silently=True,
-		)
-		return render(request, 'core/thankyou.html')
-
 	context = {
 		'regions' : regions,
 		'util' : util,
 	}
+	if is_valid_queryparam(name) and is_valid_queryparam(email) and is_valid_queryparam(message):
+		c = Contact(name=name, email=email, telephone=phone, subject=subject, message=message)
+		c.save()
+		"""send_mail(
+			f'{ util.contact_subject }',
+			f"{ util.contact_mail }",
+			EMAIL_HOST_USER,
+			[email, ],
+			fail_silently=True,
+		)"""
+		send_mail(
+			f'{ util.contact_subject }',
+			f'{ util.contact_mail }\n{ name }\n{ email }\n{ email }\nMessage: { message }',
+			EMAIL_HOST_USER,
+			['accueil.sofadig@orange.fr', ],
+			fail_silently=True,
+		)
+		return render(request, 'core/thankyou.html', context)
+
+	
 	return render(request, 'core/x_contact.html', context)
